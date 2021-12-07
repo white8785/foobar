@@ -24,3 +24,5 @@ The challenge is presented.
 A solution provided via [solution.py](https://github.com/white8785/foobar/blob/main/solution.py)
 
 ![Foobar5](/../main/images/foobar5.png)
+
+Onto the next challenge...
