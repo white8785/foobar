@@ -1,28 +1,21 @@
 from math import sqrt
 
 
-"""
-Confirms an integer is not a negative number.
-"""
-
-
 def is_positive(value):
+    """
+    Confirms an integer is not a negative number
+    """
     return False if value < 0 else True
-
-
-"""
-Given a range generate, and return a list of prime numbers
-"""
 
 
 def generate_primes(number):
     """
     Generate a list of prime numbers using Sieve of Eratosthenes up to, and including
-    the {number} argument.
+    the {number} argument
 
     :param number: int
-    :param context: The upper limit of the prime generation range.
-    :return: An array of prime integers.
+    :param context: The upper limit of the prime generation range
+    :return: An array of prime integers
     :rtype: list
     """
 
@@ -52,26 +45,25 @@ def generate_primes(number):
     return primes
 
 
-"""
-Required function and spec for the system
-
-int i a number between 0 - 10000
-
-:returns: 5 character string Id
-"""
-
-
 def solution(i):
     """
+    Required function and spec for the system
+
+    Specs:
+      * {i} is between 0 - 10000
+      * a 5 digit string should be returned
+
     Given index (i), return string of digits starting with i as index
     from a string of prime numbers.
     """
-    # data validation
+
     if not i >= 0 and i <= 10000:
         raise ValueError("Your number is out of range")
 
-    range = i + 5
-    primes = generate_primes(30000)
+    range = i + 5  # set 5 digit range
+    primes = generate_primes(
+        30000
+    )  # 30000 is random to ensure 10000 index location in final string
 
     string_of_primes = ""
     for prime in primes:
