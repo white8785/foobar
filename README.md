@@ -34,4 +34,4 @@ Google took the knights graph and shortest path challenges, and and added a mapp
 ![Foobar8](/../main/images/foobar8.png)
 ![Foobar9](/../main/images/foobar9.png)
 
-WIP - A solution provided via [challenge2.py](https://github.com/white8785/foobar/blob/challenge2.py)
+WIP - A solution provided via [challenge2.py](https://github.com/white8785/foobar/main/challenge2.py)
