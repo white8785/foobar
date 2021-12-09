@@ -17,12 +17,21 @@ Poking around the available commands it become clear my next step was to `reques
 ![Foobar3](/../main/images/foobar3.png)
 
 
-The challenge is presented.
+## Challenge 1 is presented.
 
 ![Foobar4](/../main/images/foobar4.png)
 
-A solution provided via [solution.py](https://github.com/white8785/foobar/blob/main/solution.py)
+A solution provided via [challenge1.py](https://github.com/white8785/foobar/blob/main/challenge1.py)
 
 ![Foobar5](/../main/images/foobar5.png)
 
-Onto the next challenge...
+
+## Challenge 2 is presented. 
+Google took the knights graph and shortest path challenges, and and added a mapping exercise on top.  
+
+![Foobar6](/../main/images/foobar6.png)
+![Foobar7](/../main/images/foobar7.png)
+![Foobar8](/../main/images/foobar8.png)
+![Foobar9](/../main/images/foobar9.png)
+
+WIP - A solution provided via [challenge2.py](https://github.com/white8785/foobar/blob/challenge2.py)

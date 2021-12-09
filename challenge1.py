@@ -73,7 +73,7 @@ def solution(i):
 
 
 """
-Local dev only
+Local dev only - not part of the submitted answer
 """
 if __name__ == "__main__":
     assert is_positive(2) == True
