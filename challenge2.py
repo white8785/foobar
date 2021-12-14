@@ -63,63 +63,101 @@ Input/output operations are not allowed.
 
 Your solution must be under 32000 characters in length including new lines and and other non-printing characters.
 """
+from collections import deque
 
 
-def generate_knight_graph(values=8, total=63):
-    count = 0
-    row_count = 0
-    graph = {}
+class Board:
+    """
+    All things board related.
+    """
 
-    while count <= total:
-        row = []
-        for num in range(values):
-            row.append(count)
-            count += 1
-        graph[row_count] = row
-        row_count += 1
+    def __init__(self):
+        self.upper_bound = 63
+        self.row_length = 8
+        self.generate(self.row_length, self.upper_bound)
 
-    return graph
+    def generate(self, row_length, upper_bound):
+        """
+        Generate the board's graph
+        """
+        self.graph = {}
+        count = 0
+        row_count = 0
+
+        while count <= upper_bound:
+            row = []
+            for _ in range(row_length):
+                row.append(count)
+                count += 1
+            self.graph[row_count] = row
+            row_count += 1
+
+    def find_coordinates(self, value):
+        """
+        Provided a numerical value between zero and the upper limit, return location coordinates
+        """
+        for row in self.graph:
+            if value in self.graph[row]:
+                return (row, self.graph[row].index(value))
 
 
-def find_destination(value, graph):
-    for row in graph:
-        if value in graph[row]:
-            return (row, graph[row].index(value))
+class ChessPiece:
+    """
+    Base Chess piece class
+    """
+
+    def __init__(self, type):
+        self.type = type
+        self.movements = []
+
+
+class Knight(ChessPiece):
+    """
+    Knight specific attributes
+    """
+
+    def __init__(self, type="knight"):
+        self.type = type
+        self.movements = [
+            (2, -1),
+            (1, -2),
+            (-1, -2),
+            (-2, -1),
+            (-1, 2),
+            (1, 2),
+            (2, 1),
+            (-2, 1),
+        ]
 
 
 def solution(start, end):
-    # moves that our knight piece can make in relation to it's (x, y) coordinates
-    movements = [
-        (2, -1),
-        (1, -2),
-        (-1, -2),
-        (-2, -1),
-        (-1, 2),
-        (1, 2),
-        (2, 1),
-        (-2, 1),
-    ]
-
+    """
+    Determine the shortest number of steps to get from to the provided start, and end values.
+    """
     visited = set()
-    graph = generate_knight_graph()
-    start_coordinates = find_destination(start, graph)
-    end_coordinates = find_destination(end, graph)
+    theboard = Board()
+    mypiece = Knight()
 
+    start_coordinates = theboard.find_coordinates(start)
+    end_coordinates = theboard.find_coordinates(end)
     visited.add(start_coordinates)
-    processing_queue = [(0, start_coordinates)]
+
+    processing_queue = deque([(0, start_coordinates)])  # faster than an array
     while processing_queue:
-        moves, coordinates = processing_queue.pop(0)  # FIFO
+        moves_count, coordinates = processing_queue.pop()  # FIFO from right
         if (
             coordinates[0] == end_coordinates[0]
             and coordinates[1] == end_coordinates[1]
         ):
-            return moves  # answer found
+            return moves_count  # answer found
 
-        for move in movements:
+        for move in mypiece.movements:
             next_move = (coordinates[0] + move[0], coordinates[1] + move[1])
             if next_move not in visited:
-                processing_queue.append((moves + 1, next_move))
+                processing_queue.appendleft((moves_count + 1, next_move))
                 visited.add(coordinates)
+
+    return Warning("No solution found.")
 
 
 """
@@ -131,4 +169,4 @@ tests = [(0, 1), (19, 36)]
 if __name__ == "__main__":
     results = []
     for test in tests:
-        print(solution(test[0], test[1]))
+        print("SOLUTION: {}".format(solution(test[0], test[1])))
